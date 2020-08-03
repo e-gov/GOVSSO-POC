@@ -9,7 +9,7 @@
 # POC-i käivitamine kohalikus masinas (kiire näide)
 
 POC keskkonna koodiga tuleb kaasa vaikimisi konfiguratsioon, mis võimaldab kohalikus masinas docker keskkonna käivitada ilma seadistust muutmata.
-Sellisel juhul kasutatakse autentimisteenusena RIA arenduskeskkonnas paiknevat TARA serverit https://tara-fe1.ci.kit/ (ligipääs antud teenusele on ainult RIA sisevõrgust või üle VPN-i).
+Sellisel juhul kasutatakse autentimisteenusena RIA arenduskeskkonnas paiknevat TARA serverit https://tara-<TARISTU>/ (ligipääs antud teenusele on ainult RIA sisevõrgust või üle VPN-i).
 
 1. Lisa POC näiterakenduse usaldusahela juursertifikaat sirviku usaldatud sertifikaadi väljastajate nimekirja:
  [../certs/sso-dev-root.pem](../certs/sso-dev-root.pem)
@@ -152,10 +152,10 @@ sso-login-server näol on tegemist tavapärase Spring Boot rakendusega. Rakendus
 | sso.hydra.trust-store-password  | Usaldatud sertifikaatide hoidla parool. | changeme |
 | sso.tara.client-id              | TARA SSO klientrakenduse tunnus TARA kliendibaasis | tarasso2 |
 | sso.tara.client-secret          | TARA SSO klientrakenduse salasõna TARA kliendibaasis | secret |
-| sso.tara.token-endpoint         | TARA tõendiväljastus otspunkti URL | https://tara-fe1.ci.kit/oidc/token |
-| sso.tara.userinfo-endpoint      | TARA isikuandmete väljastuse otspunkti URL | https://tara-fe1.ci.kit/oidc/profile |
-| sso.tara.jwks-uri               | TARA avaliku allkirjastamise võtme otspunkti URL | https://tara-fe1.ci.kit/oidc/jwks |
-| sso.tara.authorization_endpoint | TARA autentimise otspunkti URL | https://tara-fe1.ci.kit/oidc/authorize |
+| sso.tara.token-endpoint         | TARA tõendiväljastus otspunkti URL | https://tara-<TARISTU>/oidc/token |
+| sso.tara.userinfo-endpoint      | TARA isikuandmete väljastuse otspunkti URL | https://tara-<TARISTU>/oidc/profile |
+| sso.tara.jwks-uri               | TARA avaliku allkirjastamise võtme otspunkti URL | https://tara-<TARISTU>/oidc/jwks |
+| sso.tara.authorization_endpoint | TARA autentimise otspunkti URL | https://tara-<TARISTU>/oidc/authorize |
 | sso.tara.trust-store            | Usaldatud sertifikaatide hoidla faili asukoht TARA ühenduse jaoks. Peab sisaldama TARA serveri sertifikaati. | file:/etc/sso-login-server/tara_truststore.p12 |
 | sso.tara.trust-store-password   | Usaldatud sertifikaatide hoidla faili parool TARA ühenduse jaoks | changeme |
 
