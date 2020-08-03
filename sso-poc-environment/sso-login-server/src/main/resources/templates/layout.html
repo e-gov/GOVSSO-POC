@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/styles/main.css">
+    <title th:text="#{label.header.page-title}"></title>
+</head>
+<body>
+<div class="c-layout">
+    <div class="c-layout--full">
+        <div th:replace="~{fragments/header}">Header</div>
+        <div class="container" layout:fragment="content"></div>
+    </div>
+    <footer th:replace="~{fragments/footer}">Footer</footer>
+</div>
+</body>
+</html>

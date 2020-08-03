@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<body>
+<div layout:fragment="content" th:with="hideHeaderLanguageSelection=true" th:remove="tag">
+    <div class="container">
+        <div class="alert alert-error" role="alert">
+            <p><strong><span th:text="#{message.error.404.title}" th:remove="tag"></span></strong></p>
+            <p th:text="#{message.error.404.error}"></p>
+            <p th:text="#{message.error.404.footer}"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

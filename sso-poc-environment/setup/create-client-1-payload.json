@@ -1,0 +1,24 @@
+{
+  "audience": ["sso-client-1"],
+  "backchannel_logout_session_required": true,
+  "backchannel_logout_uri": "https://sso-client-1.<TARISTU>:8445/session/logout",
+  "logo_uri":"https://sso-client-1.<TARISTU>:8445/images/faviconA.png",
+  "client_id": "sso-client-1",
+  "client_name": "Klientrakendus 1",
+  "client_secret": "secret",
+  "client_secret_expires_at": 0,
+  "client_uri": "https://sso-client-1.<TARISTU>:8445",
+  "contacts": ["administraator@sso-client-1.<TARISTU>"],
+  "grant_types": ["authorization_code"],
+  "metadata": {
+    "customer": {
+      "sector":"public"
+    }
+  },
+  "redirect_uris": ["https://sso-client-1.<TARISTU>:8445/login/oauth2/code/tarasso", "https://sso-client-1.<TARISTU>:8445", "https://sso-client-1.<TARISTU>:8445/session/logout"],
+  "response_types": ["code"],
+  "scope": "openid",
+  "subject_type": "public",
+  "token_endpoint_auth_method": "client_secret_basic",
+  "post_logout_redirect_uris":["https://sso-client-1.<TARISTU>:8445"]
+}

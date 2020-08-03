@@ -1,0 +1,18 @@
+[ req ]
+default_bits       = 2048
+distinguished_name = req_distinguished_name
+req_extensions     = req_ext
+
+[ req_distinguished_name ]
+countryName                 = Country Name (2 letter code)
+countryName_default         = EE
+localityName                = Locality Name (eg, city)
+localityName_default        = Tallinn
+organizationName            = Organization Name (eg, company)
+organizationName_default    = sso-dev
+commonName                  = Common Name (e.g. server FQDN or YOUR name)
+commonName_max              = 64
+commonName_default          = sso.<TARISTU>
+
+[ req_ext ]
+subjectAltName = @alt_names

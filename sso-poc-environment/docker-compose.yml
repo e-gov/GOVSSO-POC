@@ -1,0 +1,130 @@
+version: '2.1'
+
+services:
+  sso-oidc-server:
+    image: sso-oidc-server
+    ports:
+      - "8443:8443"
+      - "4445:4445"
+    command:
+      serve all
+    environment:
+      - LOG_LEVEL=debug
+      - URLS_SELF_ISSUER=https://sso-oidc-server.<TARISTU>:8443
+      - URLS_CONSENT=https://sso-login-server.<TARISTU>:8444/consent/request
+      - URLS_LOGIN=https://sso-login-server.<TARISTU>:8444/login/request
+      - URLS_LOGOUT=https://sso-login-server.<TARISTU>:8444/logout/request
+      - URLS_POST_LOGOUT_REDIRECT=https://sso-login-server.<TARISTU>:8444/logout/redirect
+      - TTL_ID_TOKEN=15m
+      - TTL_AUTH_CODE=5m
+      - TTL_CONSENT_REQUEST=5m
+      - TTL_REFRESH_TOKEN=5m
+      - TTL_ACCESS_TOKEN=15m
+      - SECRETS_SYSTEM=youReallyNeedToChangeThis
+      - OIDC_SUBJECT_IDENTIFIERS_SUPPORTED_TYPES=public
+      - OIDC_SUBJECT_IDENTIFIERS_PAIRWISE_SALT=youReallyNeedToChangeThis
+      - DSN=postgres://hydra:secret@sso-oidc-server-db:5432/hydra?sslmode=disable&max_conns=20&max_idle_conns=4
+      - SERVE_PUBLIC_HOST=sso-oidc-server
+      - SERVE_PUBLIC_PORT=8443
+      - SERVE_ADMIN_PORT=4445
+      - SERVE_TLS_KEY_PATH=/etc/sso-oidc-server/sso-oidc-server.key
+      - SERVE_TLS_CERT_PATH=/etc/sso-oidc-server/sso-oidc-server.pem
+      - OAUTH2_EXPOSE_INTERNAL_ERRORS=true
+    volumes:
+      - "./sso-oidc-server/config/:/etc/sso-oidc-server"
+    restart: unless-stopped
+    depends_on:
+      - sso-oidc-server-db
+      - setup-sso-oidc-server-db
+    networks:
+      sso-server:
+        aliases:
+          - sso-oidc-server.<TARISTU>
+
+  sso-login-server:
+    image: sso-login-server
+    volumes:
+      - "./sso-login-server/config/:/etc/sso-login-server"
+    ports:
+      - "8444:8444"
+    restart: unless-stopped
+    networks:
+      sso-server:
+        aliases:
+          - sso-login-server.<TARISTU>
+
+  sso-oidc-server-db:
+    image: postgres:9.6
+    environment:
+      - POSTGRES_USER=hydra
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=hydra
+    networks:
+      - sso-server
+
+  setup-sso-oidc-server-db:
+    image: oryd/hydra:v1.5.1
+    environment:
+      - DSN=postgres://hydra:secret@sso-oidc-server-db:5432/hydra?sslmode=disable&max_conns=20&max_idle_conns=4
+    command:
+      migrate sql -e --yes
+    restart: on-failure
+    networks:
+      - sso-server
+    depends_on: 
+      - sso-oidc-server-db
+
+  setup-sso-oidc-server-client-1:
+    image: curlimages/curl:7.69.1
+    command:
+      "curl -X POST -v -k --retry 10 --retry-connrefused --retry-delay 15 https://sso-oidc-server.<TARISTU>:4445/clients -H 'Content-Type: application/json' --data-binary '@/tmp/create-client-1-payload.json'"
+    volumes:
+      - "./setup/create-client-1-payload.json:/tmp/create-client-1-payload.json"
+    restart: on-failure
+    networks:
+      - sso-server
+    depends_on:
+      - sso-oidc-server
+
+  setup-sso-oidc-server-client-2:
+    image: curlimages/curl:7.69.1
+    command:
+      "curl -X POST -v -k --retry 10 --retry-connrefused --retry-delay 15 https://sso-oidc-server.<TARISTU>:4445/clients -H 'Content-Type: application/json' --data-binary '@/tmp/create-client-2-payload.json'"
+    volumes:
+      - "./setup/create-client-2-payload.json:/tmp/create-client-2-payload.json"
+    restart: on-failure
+    networks:
+      - sso-server
+    depends_on:
+      - sso-oidc-server
+
+  sso-client-1:
+    image: sso-client
+    volumes:
+      - "./sso-client/config/sso-client-1/:/etc/sso-client"
+    ports:
+      - "8445:8445"
+    networks:
+      sso-server:
+        aliases:
+          - sso-client-1.<TARISTU>
+    depends_on:
+      - sso-oidc-server
+    restart: unless-stopped
+
+  sso-client-2:
+    image: sso-client
+    volumes:
+      - "./sso-client/config/sso-client-2/:/etc/sso-client"
+    ports:
+      - "8446:8446"
+    networks:
+      sso-server:
+        aliases:
+          - sso-client-2.<TARISTU>
+    depends_on:
+      - sso-oidc-server
+    restart: unless-stopped
+
+networks: 
+  sso-server:
