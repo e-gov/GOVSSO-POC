@@ -43,7 +43,7 @@ POC-i käigus arendati järgmised tarkvarakomponendid:
 
  ## POC evituskeskkond
 
-Märkus. Töötav POC on praegu kättesaadav RIA-s sisemiselt. RIA teeb töötava POC-i ka avalikult kättesaadavaks.
+Märkus. Töötav POC on praegu kättesaadav RIA-s sisemiselt.
 
 Avalikus töötavas POC-is saavad klientrakendused olema kättesaadavad URL-idelt (URL-id täpsustuvad): 
 - `https://sso-klient-1...`
