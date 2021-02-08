@@ -43,17 +43,9 @@ POC-i käigus arendati järgmised tarkvarakomponendid:
 
  ## POC evituskeskkond
 
-Märkus. Töötav POC on praegu kättesaadav RIA-s sisemiselt.
+Töötav POC on praegu kättesaadav RIA-s sisemiselt.
 
-Avalikus töötavas POC-is saavad klientrakendused olema kättesaadavad URL-idelt (URL-id täpsustuvad): 
-- `https://sso-klient-1...`
-- `https://sso-klient-2...`
-
-POC-i koosseisus olev TARA SSO makett saab olema kättesaadav URL-ilt: 
-- `https://tara-sso-oidc-demo...` 
-- teenuseteabe otspunkt saab olema `https://tara-sso-oidc-demo.../.well-known/openid-configuration`
-
-TARA SSO POC-is kasutakse autentimiseks riigi autentimisteenuse testkeskkonda [https://e-gov.github.io/TARA-Doku/Testimine](https://e-gov.github.io/TARA-Doku/Testimine). SSO POC-i klientrakenduse tunnus TARA testkeskkonnas on `...-tara-sso-poc`.
+TARA SSO POC-is kasutakse autentimiseks riigi autentimisteenuse testkeskkonda [https://e-gov.github.io/TARA-Doku/Testimine](https://e-gov.github.io/TARA-Doku/Testimine).
 
 ## POC-i evitus ja seadistusjuhend
 
