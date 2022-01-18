@@ -1,16 +1,16 @@
 Märkus. Repo on mõeldud avalikuks kasutamiseks. Skriptidest ja dokumentatsioonist eemaldatud  RIA taristu tundlike nimede jm väärtuste mainimised. Samuti on repost eemaldatud võtmed ja serdid.
 
 Vt ka:
-- [Ühekordse sisselogimise (SSO) projektlahendus](https://e-gov.github.io/TARA-Doku/SSO%20projektlahendus)
-- [Riikliku SSO tehniline spetsifikatsioon ja protokolli kirjeldus](https://e-gov.github.io/TARA-Doku/SSO%20tehniline%20spetsifikatsioon) (inglise keeles)
+- [Riigi SSO teenuse projektlahendus](https://e-gov.github.io/TARA-Doku/SSO%20projektlahendus)
+- [Riigi SSO teenuse tehniline spetsifikatsioon ja protokolli kirjeldus](https://e-gov.github.io/TARA-Doku/SSO%20tehniline%20spetsifikatsioon) (inglise keeles)
 
 ![komponentdiagramm](doc/images/sf_logo.png)
 
-# TARA SSO prototüüp (proof of concept, POC)
+# GOVSSO prototüüp (proof of concept, POC)
 
 ## Eesmärk
 
-Prototüüp on makettrakenduste kogum, mis võimaldab kasutajal läbi teha SSO kõik olulised kasutusvood. Prototüüp teostatakse vastavalt projekti tööde kirjelduse p 3.1 järgi väljatöötatud projektlahendusele ([Ühekordse sisselogimise (SSO) projektlahendus](https://e-gov.github.io/TARA-Doku/SSO%20projektlahendus)).
+Prototüüp on makettrakenduste kogum, mis võimaldab kasutajal läbi teha SSO kõik olulised kasutusvood. Prototüüp teostatakse vastavalt projekti tööde kirjelduse p 3.1 järgi väljatöötatud projektlahendusele ([Riigi SSO teenuse projektlahendus](https://e-gov.github.io/TARA-Doku/SSO%20projektlahendus)).
 Prototüübi eesmärk on maandada teostatavusriski, turvariski ja kasutatavusriski.
 Prototüüp ei ole mõeldud evitamiseks toodangukeskkonda.
 
@@ -18,7 +18,7 @@ Prototüüp ei ole mõeldud evitamiseks toodangukeskkonda.
 
 Prototüübi realiseerimisel kasutati levinud OpenID Connect (OIDC) protokolli toega tarkvarakomponente.
 Valdavalt on kasutusel Java tehnoloogiad ja Spring Boot raamistikku,  sest arendus antud platvormil on tellijale tuttav ja prototüüpimine võrdlemisi lihtne. Spring Boot on laialt levinud Java tarkvara raamistik. POC-i käigus tahtsime tõestada Spring Security (Spring raamistiku turvatäienduste paketi) sobivust standardse OIDC klientrakenduse implementeerimiseks.
-TARA SSO taustasüsteemi tuumikuna otsustati katsetada Go keeles kirjutatud ORY Hydra platvormi.
+GOVSSO taustasüsteemi tuumikuna otsustati katsetada Go keeles kirjutatud ORY Hydra platvormi.
 Prototüübi Hydra serveri vahelehtede disainis on kasutatud TARA teenuse kasutajaliidese komponente, mis põhinevad Veera raamistikul. Klientrakenduse disainis on kasutatud Bootstrap disainiraamistikku.
 
 ### ORY Hydra valik
