@@ -6,7 +6,7 @@ Vt ka:
 
 ![komponentdiagramm](doc/images/sf_logo.png)
 
-# GOVSSO prototüüp (proof of concept, POC)
+# Riigi SSO teenuse (GOVSSO) prototüüp (proof of concept, POC)
 
 ## Eesmärk
 
@@ -24,28 +24,28 @@ Prototüübi Hydra serveri vahelehtede disainis on kasutatud TARA teenuse kasuta
 ### ORY Hydra valik
 
 ORY Hydra näol on tegemist vabavaralise Oauth 2.0 ja OIDC protokolli implementeeriva serverirakendusega. Hydra kasuks räägivad tema lihtsus ja paindlikkus. Vaikimisi pakutakse ainult elementaarset OIDC protokolli voogude (autoriseerimiskoodi voog) ja OIDC seansihalduse laienduste tuge. Kasutajate haldus ja identifitseerimine on tarvis lahendada eraldi mikroteenustena. Hydra on OpenID Foundation poolt sertifitseeritud OIDC server. Tänu oma modulaarsele arhitektuurile sobib ta madalate vasteaegade ja suure läbilaskevõimega teenuse pakkumiseks.
-POC-i käigus üritati muuhulgas kinnitada või ümber lükata Hydra platvormi tehniline sobivus TARA SSO lahendamiseks. Täna on teada, et ka tulevane TARA teenuse arhitektuur baseerub Hydra platvormil. Kuivõrd TARA ja TARA SSO teenuste arendused on väga lähedalt seotud, siis on sama platvormi kasutamine mõlema teenuse taustasüsteemis otstarbekas.
-POC-i implementatsiooni käigus tulid välja mõned olulised Hydra platvormi tehnilised puudujäägid, millega tuleb tulevase TARA SSO teenuse implementeerimisel kindlasti arvestada (vt. Lisa 1)
+POC-i käigus üritati muuhulgas kinnitada või ümber lükata Hydra platvormi tehniline sobivus GOVSSO lahendamiseks. Täna on teada, et ka tulevane TARA teenuse arhitektuur baseerub Hydra platvormil. Kuivõrd TARA ja GOVSSO teenuste arendused on väga lähedalt seotud, siis on sama platvormi kasutamine mõlema teenuse taustasüsteemis otstarbekas.
+POC-i implementatsiooni käigus tulid välja mõned olulised Hydra platvormi tehnilised puudujäägid, millega tuleb tulevase GOVSSO teenuse implementeerimisel kindlasti arvestada (vt. Lisa 1)
 
 ## POC-i komponentmudel
 
 POC-i käigus arendati järgmised tarkvarakomponendid:
 
-- `sso-client`: TARA SSO-d kasutava klientrakenduse makett, mis võimaldab läbi mängida kasutaja autentimise erialdiseisvate e-teenuste lõikes sama SSO seansi raames
-- `sso-oidc-server`: TARA SSO-d implementeeriv Hydra serverirakendus ja konfiguratsioon
+- `sso-client`: GOVSSO-d kasutava klientrakenduse makett, mis võimaldab läbi mängida kasutaja autentimise erialdiseisvate e-teenuste lõikes sama SSO seansi raames
+- `sso-oidc-server`: GOVSSO-d implementeeriv Hydra serverirakendus ja konfiguratsioon
 - `sso-login-server`: Hydra kasutajate identifitseerimise ja osaliselt seansi halduse samme implementeeriv mikroteenus.
-- `sso-oidc-server-db`: TARA SSO Hydra serveri andmebaas ja selle algseadistamise skriptid
-- Evituskeskkonna tehniline kirjeldus ja skriptid. TARA SSO makettrakendus ja selle komponentide paigaldamiseks täitja keskkonnas toimus Docker konteinerite ning docker-compose konteinerite orkestreerimise tööriista kaudu.
+- `sso-oidc-server-db`: GOVSSO Hydra serveri andmebaas ja selle algseadistamise skriptid
+- Evituskeskkonna tehniline kirjeldus ja skriptid. GOVSSO makettrakendus ja selle komponentide paigaldamiseks täitja keskkonnas toimus Docker konteinerite ning docker-compose konteinerite orkestreerimise tööriista kaudu.
 - Eraldi TARA teenuse maketti POC rakenduse jaoks ei koostatud. Selle asemel on kasutusel RIA riigi autentimisteenuse testkeskkond.
 
  ![komponentdiagramm](doc/images/POC_nortal_deployment.png)
- Joonis 1: TARA SSO POC-i komponentide mudel
+ Joonis 1: GOVSSO POC-i komponentide mudel
 
  ## POC evituskeskkond
 
 Töötav POC on praegu kättesaadav RIA-s sisemiselt.
 
-TARA SSO POC-is kasutakse autentimiseks riigi autentimisteenuse testkeskkonda [https://e-gov.github.io/TARA-Doku/Testimine](https://e-gov.github.io/TARA-Doku/Testimine).
+GOVSSO POC-is kasutakse autentimiseks riigi autentimisteenuse testkeskkonda [https://e-gov.github.io/TARA-Doku/Testimine](https://e-gov.github.io/TARA-Doku/Testimine).
 
 ## POC-i evitus ja seadistusjuhend
 
@@ -53,7 +53,7 @@ POC programmi kood, evitusjuhend ja rakenduste seadistamise juhend asub antud re
 
 ## Realiseeritud kasutusjuhud
 
-### Autentimine klientrakenduses TARA SSO abil ühe klientrakenduse näitel.
+### Autentimine klientrakenduses GOVSSO abil ühe klientrakenduse näitel.
 
 1. Kasutaja avab sirvikus Klientrakendus 1 e-teenuse avalehe
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.24.27.png)
@@ -62,7 +62,7 @@ Kuna kasutajal puudub aktiivne SSO seanss, siis suunatakse ta otse TARA teenuse 
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.25.02.png)
 3. Kasutaja autendib ennast Mobiil-ID abil
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.25.07.png)
-4. Eduka autentimise järel tekitab TARA SSO kasutajale SSO seansi ja suunab sirviku tagasi Klientrakendus 1 e-teenuse tagasisuunamise URL-ile.
+4. Eduka autentimise järel tekitab GOVSSO kasutajale SSO seansi ja suunab sirviku tagasi Klientrakendus 1 e-teenuse tagasisuunamise URL-ile.
 Kasutaja on klientrakendusse sisse logitud, sirvikus kuvatakse Klientrakendus 1 e-teenuse töölaud.
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.25.19.png)
 
@@ -75,14 +75,14 @@ Kuna kasutajal puudub aktiivne SSO seanss, siis suunatakse sirvik otse TARA teen
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.25.02.png)
 3. Kasutaja autendib ennast TARA-s Mobiil-ID abil
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.25.07.png)
-4. Eduka autentimise järel tekitab TARA SSO kasutajale SSO seansi ja suunab sirviku tagasi Klientrakendus 1 e-teenuse tagasisuunamise URL-ile.
+4. Eduka autentimise järel tekitab GOVSSO kasutajale SSO seansi ja suunab sirviku tagasi Klientrakendus 1 e-teenuse tagasisuunamise URL-ile.
 Kasutaja on Klientrakendus 1 e-teenusesse sisse logitud, sirvikus kuvatakse Klientrakendus 1 e-teenuse töölaud.
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.25.19.png)
 5. Kasutaja avab sirviku uues sakis Klientrakendus 2 e-teenuse avalehe
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.26.02.png)
 6. Kasutaja vajutab "Logi sisse" nuppu Kilientrakendus 2 e-teenuse avalehel.
-Kuna kasutajal eksisteerib aktiivne SSO seanss, siis suunatakse sirvik otse TARA SSO sisselogimise teavituse vahelehele.
-Vahelehel on näha hetkel TARA SSO-s aktiivse seansiga seotud isiku andmed ja Klientrakenduse 2 e-teenuse nimi koos logoga.
+Kuna kasutajal eksisteerib aktiivne SSO seanss, siis suunatakse sirvik otse GOVSSO sisselogimise teavituse vahelehele.
+Vahelehel on näha hetkel GOVSSO-s aktiivse seansiga seotud isiku andmed ja Klientrakenduse 2 e-teenuse nimi koos logoga.
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.26.08.png)
 7. Kasutaja soovib Klientrakendus 2 e-teenusesse siseneda kehtiva SSO seansi raames.
 Kasuta vajutab Sisselogimise teavituse lehel "Jätka sessiooni" nupu.
@@ -92,7 +92,7 @@ Kasutaja on Klientrakendus 2 e-teenusesse sisse logitud, sirvikus kuvatakse Klie
 8. Kasutajale kuvatakse erinevates sirviku sakkides klientrakenduste töölaudade vaated koos vastava klientrakenduse seanssidega seotud identsustõendite sisudega.
 Töölaual kuvatakse identsustõendite sid väide, mille abil kasutaja saab veenduda, et klientrakenduste identsustõendid on seotud sama SSO seansitunnusega.
 Töölaual kuvatakse identsustõendite aud väide, mille abil kasutaja saab veenduda, et klientrakenduste identsustõendid on väljastatud korrektsetele klientrakendustele.
-Vajutades töölaual nuppu "Värskenda seanssi" saab kasutaja veenduda, et mõlemal klientrakendusel õnnestub TARA SSO-lt pärida uus identsustõend (s.t. SSO seansi värskendamine õnnestub).
+Vajutades töölaual nuppu "Värskenda seanssi" saab kasutaja veenduda, et mõlemal klientrakendusel õnnestub GOVSSO-lt pärida uus identsustõend (s.t. SSO seansi värskendamine õnnestub).
 Iga "Värskenda seanssi" nupu vajutuse järel saab kasutaja veenduda, et identsustõendi järjekorranumber (jti väide) muutub.
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.25.33.png)
 
@@ -105,24 +105,24 @@ Kuna kasutajal puudub aktiivne SSO seanss, siis suunatakse sirvik otse TARA teen
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.25.02.png)
 3. Kasutaja autendib ennast TARA-s Mobiil-ID abil
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.25.07.png)
-4. Eduka autentimise järel tekitab TARA SSO kasutajale SSO seansi ja suunab sirviku tagasi Klientrakendus 1 e-teenuse tagasisuunamise URL-ile.
+4. Eduka autentimise järel tekitab GOVSSO kasutajale SSO seansi ja suunab sirviku tagasi Klientrakendus 1 e-teenuse tagasisuunamise URL-ile.
 Kasutaja on Klientrakendus 1 e-teenusesse sisse logitud, sirvikus kuvatakse Klientrakendus 1 e-teenuse töölaud.
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.25.19.png)
 5. Kasutaja avab sirviku uues sakis Klientrakendus 2 e-teenuse avalehe
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.26.02.png)
 6. Kasutaja vajutab "Logi sisse" nuppu Klientrakendus 2 e-teenuse avalehel.
-Kuna kasutajal eksisteerib aktiivne SSO seanss, siis suunatakse sirvik TARA SSO sisselogimise teavituse vahelehele.
-Vahelehel on näha hetkel TARA SSO-s aktiivse seansiga seotud isiku andmed ja Klientrakenduse 2 e-teenuse nimi koos logoga.
+Kuna kasutajal eksisteerib aktiivne SSO seanss, siis suunatakse sirvik GOVSSO sisselogimise teavituse vahelehele.
+Vahelehel on näha hetkel GOVSSO-s aktiivse seansiga seotud isiku andmed ja Klientrakenduse 2 e-teenuse nimi koos logoga.
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.26.08.png)
 7. Kasutaja vajutab sisselogimise vahelehel "Autendi uuesti" nuppu.
-Taustal toimub kehtiva TARA SSO seansi tühistamine.
-Kuna SSO seansiga oli varasemalt sisse logitud ka Klientrakendus 1 e-teenusesse, siis saadab TARA SSO taustakanali kaudu väljalogimise tõendi ka Klientrakendus 1 e-teenuse serverikomponendile.
+Taustal toimub kehtiva GOVSSO seansi tühistamine.
+Kuna SSO seansiga oli varasemalt sisse logitud ka Klientrakendus 1 e-teenusesse, siis saadab GOVSSO taustakanali kaudu väljalogimise tõendi ka Klientrakendus 1 e-teenuse serverikomponendile.
 Klientrakendus 1 server kontrollib saadud väljalogimise tõendi korrektsust ja tühistab kehtiva Klientrakendus 1 seansi.
-TARA SSO suunab sirviku edasi TARA autentimisvahendite valiku lehele.
+GOVSSO suunab sirviku edasi TARA autentimisvahendite valiku lehele.
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.25.02.png)
 8. Kasutaja autendib ennast TARA-s Mobiil-ID abil
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.25.07.png)
-9. Eduka autentimise järel tekitab TARA SSO kasutajale SSO seansi ja suunab sirviku tagasi Klientrakendus 2 e-teenuse tagasisuunamise URL-ile.
+9. Eduka autentimise järel tekitab GOVSSO kasutajale SSO seansi ja suunab sirviku tagasi Klientrakendus 2 e-teenuse tagasisuunamise URL-ile.
 Kasutaja on Klientrakendus 2 e-teenusesse sisse logitud.
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.26.19.png)
 10. Kasutaja liigub sirvikus tagasi Klientrakendus 1 e-teenuse saki peale.
@@ -145,13 +145,13 @@ Kuna kasutajal puudub aktiivne SSO seanss, siis suunatakse ta otse TARA teenuse 
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.25.02.png)
 3. Kasutaja autendib ennast Mobiil-ID abil
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.25.07.png)
-4. Eduka autentimise järel tekitab TARA SSO kasutajale SSO seansi ja suunab sirviku tagasi Klientrakendus 1 e-teenuse tagasisuunamise URL-ile.
+4. Eduka autentimise järel tekitab GOVSSO kasutajale SSO seansi ja suunab sirviku tagasi Klientrakendus 1 e-teenuse tagasisuunamise URL-ile.
 Kasutaja on klientrakendusse sisse logitud, sirvikus kuvatakse Klientrakendus 1 e-teenuse töölaud.
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.25.19.png)
 5. Kasutaja vajutab Klientrakendus 1 e-teenuse töölaua päises "Logi välja" nuppu
-Taustal toimub sirviku automaatne suunamine TARA SSO teenuse väljalogimise URLile.
-TARA SSO tuvastab, et kasutaja ei ole kehtiva SSO seansi raames sisse loginud mitte ühtegi teise klientrakendusse peale Klientrakendus 1 e-teenuse.
-TARA SSO teostab automaatse SSO seansi tühistamise ja suunab sirviku tagasi Klientrakendus 1 e-teenuse tagasisuunamise URL-ile (näidisrakenduses on selleks URL-iks Klientrakendus 1 avaleht).
+Taustal toimub sirviku automaatne suunamine GOVSSO teenuse väljalogimise URLile.
+GOVSSO tuvastab, et kasutaja ei ole kehtiva SSO seansi raames sisse loginud mitte ühtegi teise klientrakendusse peale Klientrakendus 1 e-teenuse.
+GOVSSO teostab automaatse SSO seansi tühistamise ja suunab sirviku tagasi Klientrakendus 1 e-teenuse tagasisuunamise URL-ile (näidisrakenduses on selleks URL-iks Klientrakendus 1 avaleht).
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.24.27.png)
 
 ### Väljalogimise vahelehe kuvamine, väljalogimine kõikidest klientrakendustest korraga
@@ -165,14 +165,14 @@ Sirvikus on avatud kaks sakki. Ühel sakil kuvatakse Klientrakendus 1 e-teenuse 
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.26.19.png)
 2. Kasutaja vajutab Klientrakendus 1 e-teenuse töölaua päises "Logi välja" nupule.
 Klientrakendus 1 tühistab klientrakenduse seansi (logib kasutaja välja Klientrakendus 1 e-teenusest).
-Klientrakendus 1 suunab sirviku TARA SSO teenuse väljalogimise URL-ile.
-TARA SSO tuvastab, et SSO seansi raames logiti sisse mitmesse klientrakendusse ja sellest tulenevalt kuvab väljalogimise vahelehe.
+Klientrakendus 1 suunab sirviku GOVSSO teenuse väljalogimise URL-ile.
+GOVSSO tuvastab, et SSO seansi raames logiti sisse mitmesse klientrakendusse ja sellest tulenevalt kuvab väljalogimise vahelehe.
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_22.09.12.png)
 3. Kasutale kuvatakse valik teistes klientrakendustes töö jätkamiseks või kõikide klientrakenduste seansside tühistamiseks.
 Kasutaja vajutab "Logi välja" nupule, et tühistada terve SSO seanss ja sellega seotud klientrakenduste seansid.
-TARA SSO tühistab SSO seansi.
-TARA SSO saadab taustakanali kaudu väljalogimise tõendi Klientrakendus 2 e-teenusele
-TARA SSO suunab sirviku tagasi Klientrakendus 1 e-teenuse väljalogimise suunamise URL-ile (poc rakenduses on selleks URL-iks Klientrakendus 1 e-teenuse avaleht).
+GOVSSO tühistab SSO seansi.
+GOVSSO saadab taustakanali kaudu väljalogimise tõendi Klientrakendus 2 e-teenusele
+GOVSSO suunab sirviku tagasi Klientrakendus 1 e-teenuse väljalogimise suunamise URL-ile (poc rakenduses on selleks URL-iks Klientrakendus 1 e-teenuse avaleht).
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.24.27.png)
 4. Kasutaja liigub sirviku sakile, milles kuvatakse Klientrakendus 2 töölaua vaade.
 Kasutaja värskendab sirviku lehe sisu (vajutades sirviku lehe taaslaadimise nuppu või klõpsates Klientrakendus 2 e-teenuse päises olevale logole)
@@ -191,12 +191,12 @@ Sirvikus on avatud kaks sakki. Ühel sakil kuvatakse Klientrakendus 1 e-teenuse 
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.26.19.png)
 2. Kasutaja vajutab Klientrakendus 1 e-teenuse töölaua päises "Logi välja" nupule.
 Klientrakendus 1 tühistab klientrakenduse seansi (logib kasutaja välja Klientrakendus 1 e-teenusest).
-Klientrakendus 1 suunab sirviku TARA SSO teenuse väljalogimise URL-ile.
-TARA SSO tuvastab, et SSO seansi raames logiti sisse mitmesse klientrakendusse ja sellest tulenevalt kuvab väljalogimise vahelehe.
+Klientrakendus 1 suunab sirviku GOVSSO teenuse väljalogimise URL-ile.
+GOVSSO tuvastab, et SSO seansi raames logiti sisse mitmesse klientrakendusse ja sellest tulenevalt kuvab väljalogimise vahelehe.
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_22.09.12.png)
 3. Kasutaja vajutab nuppu "Jätka sessioone"
-TARA SSO eemaldab Klientrakendus 1 seose SSO seansi juurest.
-TARA SSO suunab sirviku tagasi Klientrakendus 1 avalehele.
+GOVSSO eemaldab Klientrakendus 1 seose SSO seansi juurest.
+GOVSSO suunab sirviku tagasi Klientrakendus 1 avalehele.
 ![ekraanipilt](doc/images/Screenshot_2020-06-22_at_13.24.27.png)
 4. Kasutaja liigub sirviku sakile, milles kuvatakse Klientrakendus 2 töölaua vaade.
 Kasutaja värskendab SSO seanssi (vajutades "Värskenda seanssi" nuppu).
@@ -209,11 +209,11 @@ Kasutaja saab veenduda, et uus identsustõend sisaldab endiselt sama sid väite 
 
 #### Põhjendus
 
-Autentimiseks kasutame tänase TARA teenuse testkeskkonda ja tema liidest. Paraku puudub võimalus klientrakenduse andmete edastamiseks TARA SSO teenuselt TARA teenusele.
+Autentimiseks kasutame tänase TARA teenuse testkeskkonda ja tema liidest. Paraku puudub võimalus klientrakenduse andmete edastamiseks GOVSSO teenuselt TARA teenusele.
 
 #### Soovitus
 
-Tulevaste lahendusvariantidena võib kaaluda TARA protokolli tagasiühilduvalt täiendada. Näiteks lisades mittekohustusliku klientrakenduse tunnuse parameetri TARA SSO→TARA suunalistesse päringutesse. Sellisel juhul tuleks päringu andmeid kaitsta muutmise eest allkirjastades päringu TARA SSO poolel. Lahendus eeldab tõenäoliselt TARA arendust, sest allkirjastatud päringute töötlemise tuge tänases TARA serveris ei ole. [https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)
+Tulevaste lahendusvariantidena võib kaaluda TARA protokolli tagasiühilduvalt täiendada. Näiteks lisades mittekohustusliku klientrakenduse tunnuse parameetri GOVSSO → TARA suunalistesse päringutesse. Sellisel juhul tuleks päringu andmeid kaitsta muutmise eest allkirjastades päringu GOVSSO poolel. Lahendus eeldab tõenäoliselt TARA arendust, sest allkirjastatud päringute töötlemise tuge tänases TARA serveris ei ole. [https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests](https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests)
 
 ### Mitme paralleelse autentimise toimingu piiramine
 
@@ -223,9 +223,9 @@ Tegemist on erijuhtumiga, mille lahendamine POC-i skoobis ei oma suurt demonstra
 
 #### Soovitus
 
-### Blokeerida paralleelsed TARA SSO seansi algatamised.
+### Blokeerida paralleelsed GOVSSO seansi algatamised.
 
-Uue identsustõendi korral pikendatakse TARA SSO seansiküpsise kehtivust 15 minutini
+Uue identsustõendi korral pikendatakse GOVSSO seansiküpsise kehtivust 15 minutini
 
 #### Põhjendus
 
@@ -240,17 +240,17 @@ Valida mõni alternatiivne karbitoode või teostada ka Hydra poolt pakutav seans
 
 ## Ei ole võimalik juhtida SSO seansiküpsise kehtivust (15 minuti piirang)
 
-Hydra serveri konfiguratsiooni kaudu pole võimalik juhtida SSO seansiküpsise kehtivust. TARA SSO protokolli analüüsis panime paika, et iga klientrakendus peab perioodiliselt teostama identsustõendi päringuid, et TARA SSO poolel seansi kehtivust pikendada. Hydra paraku sellist kasutusjuhtu ette ei näe. SSO seansiküpsis, mille Hydra seadmesse salvestab, kehtib kuni sirviku sulgemiseni või kui kasutaja nõustub välja logima kõikidest teenustest korraga. 
+Hydra serveri konfiguratsiooni kaudu pole võimalik juhtida SSO seansiküpsise kehtivust. GOVSSO protokolli analüüsis panime paika, et iga klientrakendus peab perioodiliselt teostama identsustõendi päringuid, et GOVSSO poolel seansi kehtivust pikendada. Hydra paraku sellist kasutusjuhtu ette ei näe. SSO seansiküpsis, mille Hydra seadmesse salvestab, kehtib kuni sirviku sulgemiseni või kui kasutaja nõustub välja logima kõikidest teenustest korraga. 
 
-Antud puuduse tulemusena pikeneb seansiküpsise lekkimise ajaaken. SSO POC-is tehtavate autentimiste ja väljalogimiste üle peetakse järjestust Hydra sisemiste andmeolemite kehtivuse abil (LoginRequest, ConsentRequest, LogoutRequest objektid). Paraku ei taga antud lahendus automaatset seansside aegumist TARA SSO poolel või puudub vastava protsessi kirjeldus Hydra toote dokumentatsioonis.
+Antud puuduse tulemusena pikeneb seansiküpsise lekkimise ajaaken. SSO POC-is tehtavate autentimiste ja väljalogimiste üle peetakse järjestust Hydra sisemiste andmeolemite kehtivuse abil (LoginRequest, ConsentRequest, LogoutRequest objektid). Paraku ei taga antud lahendus automaatset seansside aegumist GOVSSO poolel või puudub vastava protsessi kirjeldus Hydra toote dokumentatsioonis.
 
 ### Võimalik lahendus
 
-Hydra kasutamise korral TARA SSO taustsüsteemis tuleb täpselt rakendada seansi kehtivuse kontrolli Hydra sisemiste andmeolemite järgi. Kuigi SSO seansiküpsis seisab kasutaja sirvikus kauem kui 15 minutit, saab serveri poolelt SSO seansi lõpetamise teostada automaatse taustaprotsessi kaudu. Aegunud seansitunnusega küpsise lekkimine ei langeta TARA SSO üldist turvalisust.
+Hydra kasutamise korral GOVSSO taustsüsteemis tuleb täpselt rakendada seansi kehtivuse kontrolli Hydra sisemiste andmeolemite järgi. Kuigi SSO seansiküpsis seisab kasutaja sirvikus kauem kui 15 minutit, saab serveri poolelt SSO seansi lõpetamise teostada automaatse taustaprotsessi kaudu. Aegunud seansitunnusega küpsise lekkimine ei langeta GOVSSO üldist turvalisust.
 
 ## SSO Seansi kestel autentimise taseme tõstmisel, tühistatakse kasutaja seansid kõikides klientrakendustes ja seadmetes
 
-Hydra REST liides ei toeta seansi lõpetamist TARA SSO poolelt seadmepõhiselt. Seansi lõpetamine Hydra serveri poolel saab toimuda ainult isiku (subjekti) mitte seadme põhiselt.
+Hydra REST liides ei toeta seansi lõpetamist GOVSSO poolelt seadmepõhiselt. Seansi lõpetamine Hydra serveri poolel saab toimuda ainult isiku (subjekti) mitte seadme põhiselt.
 
 Antud piirangu tõttu ei õnnestunud kasutaja jaoks mugaval viisil lahendada mitme paralleelse seadme kasutusjuhtusid. Näiteks olukorras, kus kasutaja on loonud SSO seansid mitmes seadmes võib ühes seadmes seansi automaatne lõpetamine esile kutsuda SSO seansi lõpetamise ka teises seadmes.
 
@@ -270,12 +270,12 @@ Hydra administreerimise liidese kaudu saab isiku tunnuse (subject) järgi pärid
 
 ## Aktiivsete klientrakenduste seansside loendamine nõuab prompt parameetri kasutamist
 
-TARA SSO poolel on tarvis pidada arvestust SSO seansi raames loodud ja hetkel aktiivsete klientrakenduste seansside üle. Hydra REST liides võimaldab leida kõik SSO seansi raames isiku poolt antud volitused (ConsentRequest). Volituste objektid on seotud SSO seansiga klientrakenduse SSO seansitunnuse (sid väite) kaudu.
+GOVSSO poolel on tarvis pidada arvestust SSO seansi raames loodud ja hetkel aktiivsete klientrakenduste seansside üle. Hydra REST liides võimaldab leida kõik SSO seansi raames isiku poolt antud volitused (ConsentRequest). Volituste objektid on seotud SSO seansiga klientrakenduse SSO seansitunnuse (sid väite) kaudu.
 
 Paraku ei uuenda Hydra oma sisemises andmebaasis volituste nimekirja kui autentimise päringus pole määratud prompt=consent parameetrit. Järjestikuste SSO seansside korral ei teki Hydra seansihoidlasse uusi volituste objekte ja väljalogimise korral eemaldatakse seansi tunnused ka eelnevatelt objektidelt.
 
-OIDC spetsifikatsiooni järgi on antud parameeter mittekohustuslik ja TARA SSO OIDC profiilis kohustuslik ainult SSO seansi uuendamise päringu korral. POC rakenduse realiseerimisel lisasime prompt=consent parameetri igale autentimise päringule, et Hydra sisemise töövooga kokku viia. Kui tulevases TARA SSO arendushankes on soov tingimata kasutada Hydra lahendust, siis võib kaaluda TARA SSO OIDC profiilis autentimise päringus prompt=consent parameetri kohustuslikuks muutmist. Praeguses TARA SSO protokolli versioonis selle parameetri kasutamist ei nõuta.
+OIDC spetsifikatsiooni järgi on antud parameeter mittekohustuslik ja GOVSSO OIDC profiilis kohustuslik ainult SSO seansi uuendamise päringu korral. POC rakenduse realiseerimisel lisasime prompt=consent parameetri igale autentimise päringule, et Hydra sisemise töövooga kokku viia. Kui tulevases GOVSSO arendushankes on soov tingimata kasutada Hydra lahendust, siis võib kaaluda GOVSSO OIDC profiilis autentimise päringus prompt=consent parameetri kohustuslikuks muutmist. Praeguses GOVSSO protokolli versioonis selle parameetri kasutamist ei nõuta.
 
 ### Võimalik lahendus
 
-Vajab täpsemat analüüsi, kas tegemist on Hydra serveri oodatud käitumisega või veaga. Kui Hydra muutmine ei ole plaanis, siis võib kaaluda prompt=consent parameetri muutmist kohustuslikuks TARA SSO protokolli autentimise päringutes.
+Vajab täpsemat analüüsi, kas tegemist on Hydra serveri oodatud käitumisega või veaga. Kui Hydra muutmine ei ole plaanis, siis võib kaaluda prompt=consent parameetri muutmist kohustuslikuks GOVSSO protokolli autentimise päringutes.
