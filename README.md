@@ -6,7 +6,7 @@ Vt ka:
 
 ![komponentdiagramm](doc/images/sf_logo.png)
 
-# Riigi SSO teenuse (GOVSSO) prototüüp (proof of concept, POC)
+# [AEGUNUD] Riigi SSO teenuse (GOVSSO) prototüüp (proof of concept, POC)
 
 ## Eesmärk
 
