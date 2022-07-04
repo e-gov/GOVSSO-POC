@@ -1,3 +1,4 @@
+# [AEGUNUD]
 # Nõuded evitus ja ehituskeskkonna jaoks
 
 - Docker 19.03 (või uuem)
